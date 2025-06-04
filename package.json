@@ -18,8 +18,14 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@tailwindcss/vite": "^4.1.8",
+    "clsx": "^2.1.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "4",
