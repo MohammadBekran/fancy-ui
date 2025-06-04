@@ -1,0 +1,64 @@
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+
+import Button from "@/features/button/components";
+import Modal from "@/features/modal/components";
+
+describe("Modal", () => {
+  it("renders with trigger", () => {
+    render(<Modal trigger={<Button>Open</Button>}>Content</Modal>);
+    expect(screen.getByRole("button", { name: "Open" })).toBeInTheDocument();
+  });
+
+  it("renders with different sizes", () => {
+    const { rerender } = render(
+      <Modal isOpen={true} onClose={() => {}} size="sm">
+        Content
+      </Modal>
+    );
+    expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[300px]");
+
+    rerender(
+      <Modal isOpen={true} onClose={() => {}} size="md">
+        Content
+      </Modal>
+    );
+    expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[500px]");
+
+    rerender(
+      <Modal isOpen={true} onClose={() => {}} size="lg">
+        Content
+      </Modal>
+    );
+    expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[800px]");
+
+    rerender(
+      <Modal isOpen={true} onClose={() => {}} size="xl">
+        Content
+      </Modal>
+    );
+    expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[1200px]");
+
+    rerender(
+      <Modal isOpen={true} onClose={() => {}} size="full">
+        Content
+      </Modal>
+    );
+    expect(screen.getByRole("dialog")).toHaveClass("w-[95%] h-[95vh]");
+  });
+
+  it("handles custom styling", () => {
+    render(
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
+        classes={{
+          content: "custom-content",
+        }}
+      >
+        Content
+      </Modal>
+    );
+    expect(screen.getByRole("dialog")).toHaveClass("custom-content");
+  });
+});

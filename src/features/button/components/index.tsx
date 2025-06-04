@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+
 import { cn } from "@/core/utils";
 
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -37,9 +38,9 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         disabled={isLoading}
         {...props}
       >
-        {isLoading ? (
+        {isLoading && (
           <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-        ) : null}
+        )}
         {children}
       </button>
     );
