@@ -79,14 +79,14 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     },
     ref
   ) => {
-    // State
+    // Hooks
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [internalError, setInternalError] = useState<string>();
     const [internalValue, setInternalValue] = useState(externalValue ?? "");
+    const generatedId = useId();
 
-    // Derived values
-    const inputId = props.id || useId();
+    const inputId = props.id || generatedId;
     const isPassword = type === "password";
     const value = externalValue ?? internalValue;
     const currentLength = typeof value === "string" ? value.length : 0;
@@ -154,6 +154,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       onFocus?.(e);
     };
 
+    // Toggle password visibility
     const togglePasswordVisibility = () => {
       setShowPassword((prev) => !prev);
     };

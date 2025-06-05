@@ -2,14 +2,14 @@ import React from "react";
 
 import { cn } from "@/core/utils";
 
-export interface IShowHidePasswordIconProps extends React.SVGAttributes<SVGElement> {}
+export type TShowHidePasswordIconProps = React.SVGAttributes<SVGElement>;
 
 export const ShowPasswordIcon = ({
   strokeWidth,
   stroke,
   className,
   ...props
-}: IShowHidePasswordIconProps) => {
+}: TShowHidePasswordIconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ export const HidePasswordIcon = ({
   stroke,
   className,
   ...props
-}: IShowHidePasswordIconProps) => {
+}: TShowHidePasswordIconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

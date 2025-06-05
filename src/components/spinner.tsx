@@ -2,9 +2,9 @@ import React from "react";
 
 import { cn } from "@/core/utils";
 
-export interface ISpinnerProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type TSpinnerProps = React.HTMLAttributes<HTMLDivElement>;
 
-const Spinner = ({ className, ...props }: ISpinnerProps) => {
+const Spinner = ({ className, ...props }: TSpinnerProps) => {
   return (
     <div
       className={cn(
