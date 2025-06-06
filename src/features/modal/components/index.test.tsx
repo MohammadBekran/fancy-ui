@@ -12,35 +12,65 @@ describe("Modal", () => {
 
   it("renders with different sizes", () => {
     const { rerender } = render(
-      <Modal isOpen={true} onClose={() => {}} size="sm">
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
+        size="sm"
+        title="Small Modal"
+        description="A small modal"
+      >
         Content
       </Modal>
     );
     expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[300px]");
 
     rerender(
-      <Modal isOpen={true} onClose={() => {}} size="md">
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
+        size="md"
+        title="Medium Modal"
+        description="A medium modal"
+      >
         Content
       </Modal>
     );
     expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[500px]");
 
     rerender(
-      <Modal isOpen={true} onClose={() => {}} size="lg">
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
+        size="lg"
+        title="Large Modal"
+        description="A large modal"
+      >
         Content
       </Modal>
     );
     expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[800px]");
 
     rerender(
-      <Modal isOpen={true} onClose={() => {}} size="xl">
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
+        size="xl"
+        title="Extra Large Modal"
+        description="An extra large modal"
+      >
         Content
       </Modal>
     );
     expect(screen.getByRole("dialog")).toHaveClass("w-[90%] max-w-[1200px]");
 
     rerender(
-      <Modal isOpen={true} onClose={() => {}} size="full">
+      <Modal
+        isOpen={true}
+        onClose={() => {}}
+        size="full"
+        title="Full Modal"
+        description="A full screen modal"
+      >
         Content
       </Modal>
     );
@@ -52,6 +82,8 @@ describe("Modal", () => {
       <Modal
         isOpen={true}
         onClose={() => {}}
+        title="Custom Modal"
+        description="A custom styled modal"
         classes={{
           content: "custom-content",
         }}

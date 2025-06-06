@@ -1,32 +1,26 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import Button from "@/features/button/components";
+import type { IModalProps } from "@/features/modal/core/types";
 
 import { cn } from "@/core/utils";
 
 import "@/features/modal/components/index.css";
 
-export interface IModalProps {
-  isOpen?: boolean;
-  onClose?: () => void;
-  children: React.ReactNode;
-  title?: string;
-  description?: string;
-  size?: "sm" | "md" | "lg" | "xl" | "full";
-  showCloseButton?: boolean;
-  closeOnOutsideClick?: boolean;
-  trigger?: React.ReactNode;
-  classes?: {
-    overlay?: string;
-    content?: string;
-    title?: string;
-    description?: string;
-    closeButton?: string;
-    closeIcon?: string;
-  };
-}
-
+/**
+ * A flexible modal component built on top of Radix UI Dialog.
+ * Provides a fully accessible and customizable modal experience.
+ *
+ * Features:
+ * - Multiple size variants
+ * - Customizable overlay
+ * - Animated transitions
+ * - Close on outside click
+ * - Optional trigger element
+ * - Custom styling through classes prop
+ * - Full accessibility support
+ */
 const Modal = forwardRef<HTMLDivElement, IModalProps>(
   (
     {
@@ -45,15 +39,18 @@ const Modal = forwardRef<HTMLDivElement, IModalProps>(
   ) => {
     return (
       <Dialog.Root open={isOpen} onOpenChange={closeOnOutsideClick ? onClose : undefined}>
+        {/* Modal trigger element */}
         {trigger && <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>}
         <Dialog.Portal>
+          {/* Backdrop overlay */}
           <Dialog.Overlay
             className={cn("fixed inset-0 z-1 backdrop-blur-sm bg-black/50", classes.overlay)}
           />
+          {/* Modal content */}
           <Dialog.Content
             ref={ref}
             className={cn(
-              // Base styles
+              // Base modal styles
               "fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]",
               "rounded-lg shadow-xl p-6 bg-white",
               "overflow-y-auto z-2",
@@ -72,17 +69,21 @@ const Modal = forwardRef<HTMLDivElement, IModalProps>(
               classes.content
             )}
           >
+            {/* Modal title */}
             {title && (
               <Dialog.Title className={cn("text-lg font-semibold text-gray-900", classes.title)}>
                 {title}
               </Dialog.Title>
             )}
+            {/* Modal description */}
             {description && (
               <Dialog.Description className={cn("text-sm text-gray-500")}>
                 {description}
               </Dialog.Description>
             )}
+            {/* Modal content */}
             {children}
+            {/* Close button */}
             {showCloseButton && (
               <Dialog.Close asChild>
                 <Button
@@ -116,4 +117,5 @@ const Modal = forwardRef<HTMLDivElement, IModalProps>(
     );
   }
 );
+
 export default Modal;

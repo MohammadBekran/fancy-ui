@@ -2,56 +2,40 @@ import React, { forwardRef, useId, useState } from "react";
 
 import { VALIDATION_MESSAGES, VALIDATION_PATTERNS } from "@/features/input/core/constants";
 import { HidePasswordIcon, ShowPasswordIcon } from "@/features/input/core/icons";
-import type {
-  IInputClasses,
-  IValidationResult,
-  TValidationPattern,
-} from "@/features/input/core/types";
+import type { IInputProps, IValidationResult } from "@/features/input/core/types";
 
 import { cn } from "@/core/utils";
 
 /**
- * Props for the Input component.
- * Extends all standard input props except 'className'.
- */
-export interface IInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "className"> {
-  /** The label for the input. */
-  label?: string;
-  /** Error message to display. */
-  error?: string;
-  /** Helper text to display below the input. */
-  helperText?: string;
-  /** If true, the input will take the full width of its container. */
-  fullWidth?: boolean;
-  /** If true, the input is required. */
-  required?: boolean;
-  /** Name of the input (required for forms). */
-  name: string;
-  /** If true, shows a password visibility toggle for password fields. */
-  showPasswordToggle?: boolean;
-  /** If true, shows a character count indicator. */
-  showCharacterCount?: boolean;
-  /** Maximum allowed length for the input value. */
-  maxLength?: number;
-  /** Minimum required length for the input value. */
-  minLength?: number;
-  /** If true, shows a loading spinner in the input. */
-  isLoading?: boolean;
-  /** Built-in validation type to use. */
-  validationType?: TValidationPattern;
-  /** Custom validation function. Returns an error message if invalid, or undefined if valid. */
-  customValidation?: (value: string) => string | undefined;
-  /** Custom class names for styling. */
-  classes?: IInputClasses;
-}
-
-/**
- * A highly customizable, accessible, and reusable input component for forms.
- * Supports built-in and custom validation, error handling, helper text, password visibility toggle, loading state, and more.
+ * Input Component
  *
- * @param props IInputProps
- * @param ref React ref for the input element
+ * A production-grade form input component that provides a robust foundation for form handling
+ * in React applications. This component implements best practices for accessibility, validation,
+ * and user experience while maintaining high performance and flexibility.
+ *
+ * Key Features:
+ * - Built-in form validation with customizable patterns
+ * - Secure password handling with visibility toggle
+ * - Real-time character counting
+ * - Loading state management
+ * - Animated error feedback
+ * - Comprehensive helper text system
+ * - TailwindCSS-powered styling with customization options
+ * - Full ARIA compliance and keyboard navigation
+ * - TypeScript support with comprehensive type definitions
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <Input
+ *   name="email"
+ *   label="Email Address"
+ *   type="email"
+ *   validationType="email"
+ *   required
+ *   helperText="We'll never share your email"
+ * />
+ * ```
  */
 const Input = forwardRef<HTMLInputElement, IInputProps>(
   (
@@ -79,20 +63,21 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
     },
     ref
   ) => {
-    // Hooks
+    // Track input state and validation
     const [isFocused, setIsFocused] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [internalError, setInternalError] = useState<string>();
     const [internalValue, setInternalValue] = useState(externalValue ?? "");
     const generatedId = useId();
 
+    // Derived state
     const inputId = props.id || generatedId;
     const isPassword = type === "password";
     const value = externalValue ?? internalValue;
     const currentLength = typeof value === "string" ? value.length : 0;
     const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
-    // Validation function
+    // Validate input value against all validation rules
     const validateInput = (value: string): IValidationResult => {
       if (required && !value) {
         return { isValid: false, message: VALIDATION_MESSAGES.required };
@@ -132,7 +117,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       return { isValid: true };
     };
 
-    // Event handlers
+    // Event handlers for input interactions
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
       const { isValid, message } = validateInput(newValue);
@@ -154,12 +139,12 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       onFocus?.(e);
     };
 
-    // Toggle password visibility
+    // Toggle password visibility state
     const togglePasswordVisibility = () => {
       setShowPassword((prev) => !prev);
     };
 
-    // Class names
+    // Dynamic class names for different input states
     const inputClassName = cn(
       "w-full rounded-md text-sm px-3 py-2",
       "border border-gray-200 bg-white",
@@ -211,8 +196,16 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
       classes?.characterCount
     );
 
+    /**
+     * Input Component Implementation
+     *
+     * @param props - Component props extending HTMLInputElement attributes
+     * @param ref - Forwarded ref for direct DOM access
+     * @returns A fully accessible and feature-rich input component
+     */
     return (
       <div className={wrapperClassName}>
+        {/* Input label with required indicator */}
         {label && (
           <label htmlFor={inputId} className={labelClassName}>
             {label}
@@ -224,6 +217,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
           </label>
         )}
         <div className="relative">
+          {/* Main input element */}
           <input
             id={inputId}
             ref={ref}
@@ -244,6 +238,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
             }
             {...props}
           />
+          {/* Password visibility toggle */}
           {isPassword && showPasswordToggle && (
             <button
               type="button"
@@ -263,12 +258,14 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
               )}
             </button>
           )}
+          {/* Loading spinner */}
           {isLoading && (
             <div className="absolute right-2 top-1/2 -translate-y-1/2">
               <div className="animate-spin rounded-full h-5 w-5 border-2 border-gray-300 border-t-blue-500" />
             </div>
           )}
         </div>
+        {/* Helper text and character count */}
         <div className="flex justify-between items-center">
           {(error || internalError || helperText) && (
             <div id={`${inputId}-message`} className={messageClassName}>

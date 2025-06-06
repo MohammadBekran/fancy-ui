@@ -1,3 +1,25 @@
+/**
+ * Input Component Validation Constants
+ *
+ * This module contains comprehensive validation patterns and corresponding error messages
+ * for the Input component. These constants are used to validate various types of input data
+ * and provide user-friendly error messages.
+ *
+ * The validation patterns are implemented as regular expressions and are designed to be
+ * both strict enough to ensure data quality while being flexible enough to handle common
+ * input variations.
+ */
+
+/**
+ * Validation Patterns
+ *
+ * A collection of regular expressions for validating different types of input data.
+ * Each pattern is carefully crafted to match common formats while maintaining security
+ * and data integrity.
+ *
+ * @constant
+ * @type {Record<string, RegExp>}
+ */
 export const VALIDATION_PATTERNS = {
   email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   phone: /^\+?[\d\s-]{10,}$/,
@@ -27,6 +49,16 @@ export const VALIDATION_PATTERNS = {
   semver: /^\d+\.\d+\.\d+$/,
 } as const;
 
+/**
+ * Validation Messages
+ *
+ * User-friendly error messages corresponding to each validation pattern.
+ * Messages are designed to be clear, concise, and helpful to users when
+ * validation fails.
+ *
+ * @constant
+ * @type {Record<string, string | ((param: number) => string)>}
+ */
 export const VALIDATION_MESSAGES = {
   email: "Please enter a valid email address",
   phone: "Please enter a valid phone number (e.g., +1234567890)",

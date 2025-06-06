@@ -1,9 +1,32 @@
+/**
+ * Input Component Icons
+ *
+ * This module contains SVG icon components used in the Input component,
+ * specifically for the password visibility toggle feature. The icons are
+ * implemented as React components with customizable styling and accessibility
+ * support.
+ */
+
 import React from "react";
 
 import { cn } from "@/core/utils";
 
+/**
+ * Props interface for password visibility toggle icons
+ * Extends standard SVG attributes for maximum flexibility
+ */
 export type TShowHidePasswordIconProps = React.SVGAttributes<SVGElement>;
 
+/**
+ * Show Password Icon Component
+ *
+ * An SVG icon that indicates the password is currently hidden and can be shown.
+ * Used in password input fields to toggle password visibility.
+ *
+ * @component
+ * @param {TShowHidePasswordIconProps} props - Icon customization props
+ * @returns {JSX.Element} An SVG icon component
+ */
 export const ShowPasswordIcon = ({
   strokeWidth,
   stroke,
@@ -29,6 +52,16 @@ export const ShowPasswordIcon = ({
   );
 };
 
+/**
+ * Hide Password Icon Component
+ *
+ * An SVG icon that indicates the password is currently visible and can be hidden.
+ * Used in password input fields to toggle password visibility.
+ *
+ * @component
+ * @param {TShowHidePasswordIconProps} props - Icon customization props
+ * @returns {JSX.Element} An SVG icon component
+ */
 export const HidePasswordIcon = ({
   strokeWidth,
   stroke,

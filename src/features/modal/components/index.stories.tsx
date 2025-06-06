@@ -8,6 +8,51 @@ const meta: Meta<typeof Modal> = {
   title: "Components/Modal",
   component: Modal,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+A flexible and accessible modal component that supports various sizes and states.
+Built with TypeScript and styled with TailwindCSS.
+
+## Features
+- Multiple sizes (sm, md, lg, xl, full)
+- Close button toggle
+- Outside click handling
+- Custom styling support
+- Accessibility support
+- Smooth animations
+
+## Usage
+\`\`\`tsx
+import { Modal } from "@mohammadbekran/fancy-ui";
+import { Button } from "@mohammadbekran/fancy-ui";
+
+function MyComponent() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="My Modal"
+        size="md"
+      >
+        <p>Modal content goes here</p>
+        <div className="flex justify-end mt-4">
+          <Button onClick={() => setIsOpen(false)}>Close</Button>
+        </div>
+      </Modal>
+    </>
+  );
+}
+\`\`\`
+        `,
+      },
+    },
+  },
   argTypes: {
     size: {
       control: "select",

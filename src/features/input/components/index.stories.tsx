@@ -1,3 +1,15 @@
+/**
+ * Input Component Stories
+ *
+ * This module contains Storybook stories for the Input component, showcasing
+ * its various features, states, and use cases. Each story demonstrates a specific
+ * aspect of the component's functionality and provides interactive examples
+ * for developers.
+ *
+ * The stories are designed to serve as both documentation and a visual testing
+ * ground for the component's features.
+ */
+
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import * as Form from "@radix-ui/react-form";
@@ -6,9 +18,23 @@ import Input from "@/features/input/components";
 import Button from "@/features/button/components";
 
 /**
- * The Input component is a highly customizable, accessible, and reusable form input component.
- * It supports various features like validation, error handling, helper text, password visibility toggle,
- * loading states, and more. Built with accessibility in mind and following React best practices.
+ * Input Component Documentation
+ *
+ * A production-grade form input component that provides a robust foundation for
+ * form handling in React applications. This component implements best practices
+ * for accessibility, validation, and user experience while maintaining high
+ * performance and flexibility.
+ *
+ * Key Features:
+ * - Comprehensive form validation with built-in patterns
+ * - Secure password handling with visibility toggle
+ * - Real-time character counting
+ * - Loading state management
+ * - Animated error feedback
+ * - Comprehensive helper text system
+ * - TailwindCSS-powered styling with customization options
+ * - Full ARIA compliance and keyboard navigation
+ * - TypeScript support with comprehensive type definitions
  *
  * @example
  * ```tsx
@@ -153,8 +179,18 @@ function MyForm() {
 
 export default meta;
 
+/**
+ * Story type definition for Input component stories
+ */
 type TStory = StoryObj<typeof Input>;
 
+/**
+ * Default Input Story
+ *
+ * Demonstrates the basic usage of the Input component with minimal props.
+ * This story serves as a starting point for understanding the component's
+ * core functionality.
+ */
 export const Default: TStory = {
   args: {
     name: "default",
@@ -163,6 +199,12 @@ export const Default: TStory = {
   },
 };
 
+/**
+ * Input with Error Story
+ *
+ * Showcases the error handling capabilities of the Input component.
+ * Demonstrates how validation errors are displayed and styled.
+ */
 export const WithError: TStory = {
   args: {
     name: "with-error",
@@ -172,6 +214,12 @@ export const WithError: TStory = {
   },
 };
 
+/**
+ * Input with Helper Text Story
+ *
+ * Illustrates the helper text feature, which provides additional context
+ * or instructions to users.
+ */
 export const WithHelperText: TStory = {
   args: {
     name: "with-helper",
@@ -180,6 +228,12 @@ export const WithHelperText: TStory = {
   },
 };
 
+/**
+ * Input with Password Toggle Story
+ *
+ * Demonstrates the password visibility toggle feature, including
+ * strong password validation and helper text for password requirements.
+ */
 export const WithPasswordToggle: TStory = {
   args: {
     name: "password",
@@ -193,6 +247,12 @@ export const WithPasswordToggle: TStory = {
   },
 };
 
+/**
+ * Input with Character Count Story
+ *
+ * Showcases the character counting feature, useful for inputs with
+ * length restrictions or when users need to track their input length.
+ */
 export const WithCharacterCount: TStory = {
   args: {
     name: "character-count",
@@ -223,7 +283,7 @@ export const FullWidth: TStory = {
 
 export const FormExample: TStory = {
   render: () => (
-    <Form.Root className="space-y-4 max-w-md">
+    <div className="space-y-4 max-w-md">
       <Input name="full-name" label="Full Name" required placeholder="Enter your full name" />
       <Input
         name="email"
@@ -250,10 +310,8 @@ export const FormExample: TStory = {
         showCharacterCount
         placeholder="Tell us about yourself..."
       />
-      <Form.Submit asChild>
-        <Button type="button">Submit</Button>
-      </Form.Submit>
-    </Form.Root>
+      <Button type="button">Submit</Button>
+    </div>
   ),
 };
 
@@ -271,21 +329,14 @@ export const InteractiveExample: TStory = {
       }
     };
 
-    // Handle inout change
+    // Handle input change
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
       validateInput(e.target.value);
     };
 
-    // Handle form submission
-    const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-
-      console.log("Form submitted");
-    };
-
     return (
-      <Form.Root onSubmit={handleSubmit}>
+      <div className="space-y-4">
         <Input
           name="interactive"
           label="Interactive Input"
@@ -294,7 +345,7 @@ export const InteractiveExample: TStory = {
           onChange={handleInputChange}
           error={error}
         />
-      </Form.Root>
+      </div>
     );
   },
 };
