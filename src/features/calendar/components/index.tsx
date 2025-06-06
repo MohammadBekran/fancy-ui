@@ -476,6 +476,7 @@ const Calendar = forwardRef<HTMLButtonElement, ICalendarProps>(
   }
 );
 
-Calendar.displayName = "Calendar";
+export type { ICalendarProps } from "../core/types";
+export { Calendar };
 
 export default Calendar;

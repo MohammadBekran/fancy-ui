@@ -283,4 +283,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
   }
 );
 
+export type { IInputProps } from "../core/types";
+export { Input };
+
 export default Input;

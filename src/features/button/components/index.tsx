@@ -82,4 +82,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(
   }
 );
 
+export type { IButtonProps } from "../core/types";
+export { Button };
+
 export default Button;

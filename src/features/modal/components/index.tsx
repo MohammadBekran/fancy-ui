@@ -118,4 +118,9 @@ const Modal = forwardRef<HTMLDivElement, IModalProps>(
   }
 );
 
+Modal.displayName = "Modal";
+
+export type { IModalProps } from "../core/types";
+export { Modal };
+
 export default Modal;
