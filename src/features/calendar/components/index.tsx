@@ -58,6 +58,7 @@ const Calendar = ({
   showOutsideDays = false,
   fixedWeeks = false,
   showWeekNumbers = false,
+  showTriggerButton = true,
   disabled,
   disabledDays,
   selected,
@@ -68,7 +69,6 @@ const Calendar = ({
   maxDate,
   locale = "en-US",
   placeholder = "Select date",
-  showTriggerButton = true,
   enableRange = false,
 }: ICalendarProps) => {
   // Track selected date, current month view, popover state, and range selection
@@ -404,7 +404,6 @@ const Calendar = ({
   const renderPopover = () => {
     return (
       <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
-        {/* Calendar trigger button - only show if showTriggerButton is true */}
         <Popover.Trigger asChild>
           <Button
             variant="outline"

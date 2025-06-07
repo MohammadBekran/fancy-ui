@@ -81,6 +81,8 @@ export interface ICalendarProps extends Omit<Popover.PopoverProps, "className"> 
   showOutsideDays?: boolean;
   /** Whether to display week numbers */
   showWeekNumbers?: boolean;
+  /** Whether to show the trigger button */
+  showTriggerButton?: boolean;
   /** Whether to show a fixed number of weeks */
   fixedWeeks?: boolean;
   /** Minimum selectable date */
@@ -105,6 +107,4 @@ export interface ICalendarProps extends Omit<Popover.PopoverProps, "className"> 
   placeholder?: string;
   /** Whether to enable date range selection */
   enableRange?: boolean;
-  /** Whether to show the trigger button */
-  showTriggerButton?: boolean;
 }
