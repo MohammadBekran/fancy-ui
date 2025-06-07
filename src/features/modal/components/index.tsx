@@ -63,11 +63,9 @@ const Modal = ({
           )}
         >
           {/* Modal title */}
-          {title && (
-            <Dialog.Title className={cn("text-lg font-semibold text-gray-900", classes.title)}>
-              {title}
-            </Dialog.Title>
-          )}
+          <Dialog.Title className={cn("text-lg font-semibold text-gray-900", classes.title)}>
+            {title ?? ""}
+          </Dialog.Title>
           {/* Modal description */}
           {description && (
             <Dialog.Description className={cn("text-sm text-gray-500")}>

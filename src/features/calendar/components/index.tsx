@@ -68,9 +68,9 @@ const Calendar = ({
   maxDate,
   locale = "en-US",
   placeholder = "Select date",
-  enableRange = false,
   showTrigger = true,
-  ...rest
+  enableRange = false,
+  ...props
 }: ICalendarProps) => {
   // Track selected date, current month view, popover state, and range selection
   const [selectedDate, setSelectedDate] = useState<SelectedDate>(selected);
@@ -356,10 +356,56 @@ const Calendar = ({
     showWeekNumbers,
   ]);
 
-  return (
-    <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
-      {/* Calendar trigger button - only show if showTrigger is true */}
-      {showTrigger && (
+  // Render the entire calendar
+  const renderCalendar = () => {
+    return (
+      <>
+        {/* Month navigation header */}
+        <div className="flex items-center justify-between mb-6">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleMonthChange(-1)}
+            className={cn(
+              "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
+              "border-0 shadow-sm hover:shadow-md",
+              "hover:scale-110 cursor-pointer",
+              "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
+              classNames?.prevButton
+            )}
+            aria-label="Previous month"
+          >
+            ←
+          </Button>
+          <span className={cn("font-semibold text-lg text-gray-800", classNames?.title)}>
+            {currentMonth.toLocaleDateString(locale, { month: "long", year: "numeric" })}
+          </span>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleMonthChange(1)}
+            className={cn(
+              "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
+              "border-0 shadow-sm hover:shadow-md",
+              "hover:scale-110 cursor-pointer",
+              "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
+              classNames?.nextButton
+            )}
+            aria-label="Next month"
+          >
+            →
+          </Button>
+        </div>
+        {renderCalendarGrid()}
+      </>
+    );
+  };
+
+  // Render popover
+  const renderPopover = () => {
+    return (
+      <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
+        {/* Calendar trigger button - only show if showTrigger is true */}
         <Popover.Trigger asChild>
           <Button
             variant="outline"
@@ -377,7 +423,7 @@ const Calendar = ({
               classNames?.triggerButton
             )}
             disabled={disabled}
-            {...rest}
+            {...props}
           >
             <span>
               {selectedDate &&
@@ -407,61 +453,27 @@ const Calendar = ({
             <CalendarIcon className="h-4 w-4 text-gray-500" />
           </Button>
         </Popover.Trigger>
-      )}
-      {/* Calendar popover content */}
-      <Popover.Portal>
-        <Popover.Content
-          className={cn(
-            "z-50 w-80 rounded-2xl border-0",
-            "bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md p-6",
-            "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
-            "focus:outline-none",
-            "animate-in fade-in-0 zoom-in-95",
-            classNames?.popoverContent
-          )}
-          sideOffset={4}
-        >
-          {/* Month navigation header */}
-          <div className="flex items-center justify-between mb-6">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handleMonthChange(-1)}
-              className={cn(
-                "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
-                "border-0 shadow-sm hover:shadow-md",
-                "hover:scale-110 cursor-pointer",
-                "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
-                classNames?.prevButton
-              )}
-              aria-label="Previous month"
-            >
-              ←
-            </Button>
-            <span className={cn("font-semibold text-lg text-gray-800", classNames?.title)}>
-              {currentMonth.toLocaleDateString(locale, { month: "long", year: "numeric" })}
-            </span>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handleMonthChange(1)}
-              className={cn(
-                "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
-                "border-0 shadow-sm hover:shadow-md",
-                "hover:scale-110 cursor-pointer",
-                "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
-                classNames?.nextButton
-              )}
-              aria-label="Next month"
-            >
-              →
-            </Button>
-          </div>
-          {renderCalendarGrid()}
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
-  );
+        {/* Calendar popover content */}
+        <Popover.Portal>
+          <Popover.Content
+            className={cn(
+              "z-50 w-80 rounded-2xl border-0",
+              "bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md p-6",
+              "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+              "focus:outline-none",
+              "animate-in fade-in-0 zoom-in-95",
+              classNames?.popoverContent
+            )}
+            sideOffset={4}
+          >
+            {renderCalendar()}
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    );
+  };
+
+  return showTrigger ? renderPopover() : renderCalendar();
 };
 
 export default Calendar;
