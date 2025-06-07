@@ -199,7 +199,7 @@ const Calendar = ({
       <div className="grid grid-cols-[auto,1fr] gap-2">
         {/* Week numbers column */}
         {showWeekNumbers && (
-          <div className="flex flex-col justify-around text-xs text-gray-400">
+          <div className="flex justify-around text-xs text-gray-400">
             {Array.from({ length: Math.ceil(totalCells / 7) }).map((_, weekIndex) => {
               const weekDate = new Date(
                 currentMonth.getFullYear(),
