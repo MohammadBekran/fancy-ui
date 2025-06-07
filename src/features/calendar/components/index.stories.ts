@@ -106,9 +106,7 @@ type TStory = StoryObj<typeof Calendar>;
  * Shows basic date selection functionality
  */
 export const Default: TStory = {
-  args: {
-    placeholder: "Select a date",
-  },
+  args: {},
 };
 
 /**
@@ -118,7 +116,6 @@ export const Default: TStory = {
 export const WithDateRange: TStory = {
   args: {
     enableRange: true,
-    placeholder: "Select date range",
   },
 };
 
@@ -129,7 +126,6 @@ export const WithDateRange: TStory = {
 export const WithDisabledDates: TStory = {
   args: {
     disabledDays: [new Date(2024, 0, 1), new Date(2024, 0, 2)],
-    placeholder: "Select a date",
   },
 };
 
@@ -141,7 +137,6 @@ export const WithDateConstraints: TStory = {
   args: {
     minDate: new Date(2024, 0, 1),
     maxDate: new Date(2024, 11, 31),
-    placeholder: "Select a date",
   },
 };
 
@@ -152,7 +147,6 @@ export const WithDateConstraints: TStory = {
 export const WithFixedWeeks: TStory = {
   args: {
     fixedWeeks: true,
-    placeholder: "Select a date",
   },
 };
 
@@ -163,7 +157,6 @@ export const WithFixedWeeks: TStory = {
 export const WithoutOutsideDays: TStory = {
   args: {
     showOutsideDays: false,
-    placeholder: "Select a date",
   },
 };
 
@@ -174,6 +167,5 @@ export const WithoutOutsideDays: TStory = {
 export const Disabled: TStory = {
   args: {
     disabled: true,
-    placeholder: "Select a date",
   },
 };

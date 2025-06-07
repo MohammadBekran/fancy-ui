@@ -110,6 +110,79 @@ yarn add @mohammadbekran/fancy-ui
 pnpm add @mohammadbekran/fancy-ui
 ```
 
+### Configuration
+
+#### Vite Projects
+
+1. First, install Tailwind CSS if you haven't already:
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+2. Add the following imports to your `src/index.css`:
+
+```css
+@import "tailwindcss";
+
+@source "../node_modules/@mohammadbekran/fancy-ui/dist/**/*.{js,ts,jsx,tsx}";
+@import "../node_modules/@mohammadbekran/fancy-ui/dist/fancy-ui.css";
+```
+
+#### Next.js Projects
+
+1. Install Tailwind CSS if you haven't already:
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+2. Add the following imports to your `app/globals.css` or `styles/globals.css`:
+
+```css
+@import "tailwindcss";
+
+@source "../../node_modules/@mohammadbekran/fancy-ui/**/*.{js,ts,jsx,tsx}";
+@import "../../node_modules/@mohammadbekran/fancy-ui/dist/fancy-ui.css";
+```
+
+### Usage
+
+Import components directly from the package:
+
+```tsx
+import { Button, Calendar, Modal } from "@mohammadbekran/fancy-ui";
+
+function App() {
+  return (
+    <div>
+      <Button variant="primary">Click me</Button>
+      <Calendar />
+      <Modal>Content</Modal>
+    </div>
+  );
+}
+```
+
+### TypeScript Support
+
+The library is built with TypeScript and includes comprehensive type definitions. All components are fully typed, providing excellent IDE support and type safety.
+
+### Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+### Performance Considerations
+
+- Components are tree-shakeable, ensuring minimal bundle size
+- CSS is optimized and purged in production builds
+- Components use React.memo where appropriate for optimal rendering performance
+
 ## Development
 
 ### Prerequisites
