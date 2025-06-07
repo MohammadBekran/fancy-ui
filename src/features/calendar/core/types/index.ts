@@ -106,5 +106,5 @@ export interface ICalendarProps extends Omit<Popover.PopoverProps, "className"> 
   /** Whether to enable date range selection */
   enableRange?: boolean;
   /** Whether to show the trigger button */
-  showTrigger?: boolean;
+  showTriggerButton?: boolean;
 }

@@ -68,7 +68,7 @@ const Calendar = ({
   maxDate,
   locale = "en-US",
   placeholder = "Select date",
-  showTrigger = true,
+  showTriggerButton = true,
   enableRange = false,
 }: ICalendarProps) => {
   // Track selected date, current month view, popover state, and range selection
@@ -404,7 +404,7 @@ const Calendar = ({
   const renderPopover = () => {
     return (
       <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
-        {/* Calendar trigger button - only show if showTrigger is true */}
+        {/* Calendar trigger button - only show if showTriggerButton is true */}
         <Popover.Trigger asChild>
           <Button
             variant="outline"
@@ -471,7 +471,7 @@ const Calendar = ({
     );
   };
 
-  return showTrigger ? renderPopover() : renderCalendar();
+  return showTriggerButton ? renderPopover() : renderCalendar();
 };
 
 export default Calendar;
