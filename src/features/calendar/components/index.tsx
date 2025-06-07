@@ -70,7 +70,7 @@ const Calendar = ({
   placeholder = "Select date",
   enableRange = false,
   showTrigger = true,
-  ...props
+  ...rest
 }: ICalendarProps) => {
   // Track selected date, current month view, popover state, and range selection
   const [selectedDate, setSelectedDate] = useState<SelectedDate>(selected);
@@ -377,7 +377,7 @@ const Calendar = ({
               classNames?.triggerButton
             )}
             disabled={disabled}
-            {...props}
+            {...rest}
           >
             <span>
               {selectedDate &&
