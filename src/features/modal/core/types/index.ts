@@ -32,7 +32,7 @@ export interface IModalProps {
   /** Element that triggers the modal */
   trigger?: ReactNode;
   /** Custom class names for styling different parts of the modal */
-  classes?: IModalClasses;
+  classNames?: IModalClasses;
 }
 
 /**

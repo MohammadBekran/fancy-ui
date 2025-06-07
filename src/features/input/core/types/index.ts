@@ -58,7 +58,7 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
   fullWidth?: boolean;
 
   /** Custom class names for styling different parts of the input */
-  classes?: {
+  classNames?: {
     wrapper?: string;
     label?: string;
     input?: string;

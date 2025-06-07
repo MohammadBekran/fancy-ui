@@ -170,8 +170,8 @@ function MyForm() {
       control: "text",
       description: "Placeholder text for the input",
     },
-    classes: {
-      description: "Custom classes for styling different parts of the input",
+    classNames: {
+      description: "Custom class names for styling different parts of the input",
       control: "object",
     },
   },

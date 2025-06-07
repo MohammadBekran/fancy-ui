@@ -1,17 +1,13 @@
-import * as Popover from "@radix-ui/react-popover";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { cn } from "../../../core/utils";
 import Button from "../../button/components";
-import { CalendarIcon } from "../core/icons";
 import type { ICalendarProps, IDateRange, SelectedDate } from "../core/types";
 
 /**
  * Calendar Component
  *
  * A production-grade date picker that provides a robust foundation for date selection
- * in React applications. Built on top of Radix UI's Popover primitive for accessibility
- * and keyboard navigation support.
  *
  * Architecture:
  * - Core date management using date-fns
@@ -58,7 +54,6 @@ const Calendar = ({
   showOutsideDays = false,
   fixedWeeks = false,
   showWeekNumbers = false,
-  showTriggerButton = true,
   disabled,
   disabledDays,
   selected,
@@ -68,15 +63,13 @@ const Calendar = ({
   minDate,
   maxDate,
   locale = "en-US",
-  placeholder = "Select date",
   enableRange = false,
 }: ICalendarProps) => {
-  // Track selected date, current month view, popover state, and range selection
+  // Track selected date, current month view and range selection
   const [selectedDate, setSelectedDate] = useState<SelectedDate>(selected);
   const [currentMonth, setCurrentMonth] = useState<Date>(
     selected instanceof Date ? selected : selected?.from || new Date()
   );
-  const [isOpen, setIsOpen] = useState(false);
   const [rangeStart, setRangeStart] = useState<Date | null>(null);
 
   // Keep selected date in sync with prop changes
@@ -355,122 +348,47 @@ const Calendar = ({
     showWeekNumbers,
   ]);
 
-  // Render the entire calendar
-  const renderCalendar = () => {
-    return (
-      <>
-        {/* Month navigation header */}
-        <div className="flex items-center justify-between mb-6">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleMonthChange(-1)}
-            className={cn(
-              "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
-              "border-0 shadow-sm hover:shadow-md",
-              "hover:scale-110 cursor-pointer",
-              "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
-              classNames?.prevButton
-            )}
-            aria-label="Previous month"
-          >
-            ←
-          </Button>
-          <span className={cn("font-semibold text-lg text-gray-800", classNames?.title)}>
-            {currentMonth.toLocaleDateString(locale, { month: "long", year: "numeric" })}
-          </span>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleMonthChange(1)}
-            className={cn(
-              "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
-              "border-0 shadow-sm hover:shadow-md",
-              "hover:scale-110 cursor-pointer",
-              "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
-              classNames?.nextButton
-            )}
-            aria-label="Next month"
-          >
-            →
-          </Button>
-        </div>
-        {renderCalendarGrid()}
-      </>
-    );
-  };
-
-  // Render popover
-  const renderPopover = () => {
-    return (
-      <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
-        <Popover.Trigger asChild>
-          <Button
-            variant="outline"
-            className={cn(
-              "w-full cursor-pointer",
-              "text-left text-sm",
-              "flex items-center gap-x-3",
-              "bg-white/50 backdrop-blur-sm",
-              "border-0 shadow-sm hover:shadow-md",
-              "transition-all duration-300",
-              "hover:bg-white/80",
-              {
-                "cursor-not-allowed opacity-50": disabled,
-              },
-              classNames?.triggerButton
-            )}
-            disabled={disabled}
-          >
-            <span>
-              {selectedDate &&
-              !isNaN(
-                selectedDate instanceof Date ? selectedDate.getTime() : selectedDate.from.getTime()
-              )
-                ? enableRange && !(selectedDate instanceof Date)
-                  ? `${selectedDate.from.toLocaleDateString(locale, {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })} - ${selectedDate.to.toLocaleDateString(locale, {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}`
-                  : (selectedDate instanceof Date
-                      ? selectedDate
-                      : selectedDate.from
-                    ).toLocaleDateString(locale, {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })
-                : placeholder}
-            </span>
-            <CalendarIcon className="h-4 w-4 text-gray-500" />
-          </Button>
-        </Popover.Trigger>
-        {/* Calendar popover content */}
-        <Popover.Portal>
-          <Popover.Content
-            className={cn(
-              "z-50 w-80 rounded-2xl border-0",
-              "bg-gradient-to-br from-white/90 to-white/80 backdrop-blur-md p-6",
-              "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
-              "focus:outline-none",
-              "animate-in fade-in-0 zoom-in-95",
-              classNames?.popoverContent
-            )}
-            sideOffset={4}
-          >
-            {renderCalendar()}
-          </Popover.Content>
-        </Popover.Portal>
-      </Popover.Root>
-    );
-  };
-
-  return showTriggerButton ? renderPopover() : renderCalendar();
+  return (
+    <>
+      {/* Month navigation header */}
+      <div className="flex items-center justify-between mb-6">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handleMonthChange(-1)}
+          className={cn(
+            "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
+            "border-0 shadow-sm hover:shadow-md",
+            "hover:scale-110 cursor-pointer",
+            "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
+            classNames?.prevButton
+          )}
+          aria-label="Previous month"
+        >
+          ←
+        </Button>
+        <span className={cn("font-semibold text-lg text-gray-800", classNames?.title)}>
+          {currentMonth.toLocaleDateString(locale, { month: "long", year: "numeric" })}
+        </span>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handleMonthChange(1)}
+          className={cn(
+            "p-2 hover:bg-gray-100/80 rounded-full transition-all duration-300",
+            "border-0 shadow-sm hover:shadow-md",
+            "hover:scale-110 cursor-pointer",
+            "hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-100",
+            classNames?.nextButton
+          )}
+          aria-label="Next month"
+        >
+          →
+        </Button>
+      </div>
+      {renderCalendarGrid()}
+    </>
+  );
 };
 
 export default Calendar;

@@ -16,7 +16,7 @@ import "../components/index.css";
  * - Animated transitions
  * - Close on outside click
  * - Optional trigger element
- * - Custom styling through classes prop
+ * - Custom styling through classNames prop
  * - Full accessibility support
  */
 const Modal = ({
@@ -29,7 +29,7 @@ const Modal = ({
   showCloseButton = true,
   closeOnOutsideClick = true,
   trigger,
-  classes = {},
+  classNames = {},
 }: IModalProps) => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={closeOnOutsideClick ? onClose : undefined}>
@@ -38,7 +38,7 @@ const Modal = ({
       <Dialog.Portal>
         {/* Backdrop overlay */}
         <Dialog.Overlay
-          className={cn("fixed inset-0 z-1 backdrop-blur-sm bg-black/50", classes.overlay)}
+          className={cn("fixed inset-0 z-1 backdrop-blur-sm bg-black/50", classNames.overlay)}
         />
         {/* Modal content */}
         <Dialog.Content
@@ -59,11 +59,11 @@ const Modal = ({
               "w-[90%] max-w-[1200px]": size === "xl",
               "w-[95%] h-[95vh]": size === "full",
             },
-            classes.content
+            classNames.content
           )}
         >
           {/* Modal title */}
-          <Dialog.Title className={cn("text-lg font-semibold text-gray-900", classes.title)}>
+          <Dialog.Title className={cn("text-lg font-semibold text-gray-900", classNames.title)}>
             {title ?? ""}
           </Dialog.Title>
           {/* Modal description */}
@@ -83,11 +83,11 @@ const Modal = ({
                 onClick={onClose}
                 className={cn(
                   "absolute top-6 right-6 rounded-full cursor-pointer p-2 ml-auto transition-all duration-200 ease-in-out hover:scale-110 hover:bg-gray-100 active:scale-95",
-                  classes.closeButton
+                  classNames.closeButton
                 )}
               >
                 <svg
-                  className={cn("h-4 w-4", classes.closeIcon)}
+                  className={cn("h-4 w-4", classNames.closeIcon)}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

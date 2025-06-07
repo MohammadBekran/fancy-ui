@@ -6,8 +6,6 @@
  * The types are designed to be extensible while maintaining strict type checking.
  */
 
-import * as Popover from "@radix-ui/react-popover";
-
 /**
  * Custom class names for styling different parts of the calendar component.
  * Provides granular control over the appearance of each calendar element.
@@ -27,8 +25,6 @@ export interface ICalendarClasses {
   prevButton?: string;
   /** Next month navigation button */
   nextButton?: string;
-  /** Button that triggers the calendar popover */
-  triggerButton?: string;
   /** Main calendar view container */
   view?: string;
   /** Weekday header cells */
@@ -51,8 +47,6 @@ export interface ICalendarClasses {
   selectItemText?: string;
   /** Selection indicator for dropdown items */
   selectItemIndicator?: string;
-  /** Popover content container */
-  popoverContent?: string;
 }
 
 /**
@@ -72,17 +66,14 @@ export type SelectedDate = Date | IDateRange | undefined;
 
 /**
  * Calendar component props interface
- * Extends Radix UI Popover props with calendar-specific functionality
  */
-export interface ICalendarProps extends Omit<Popover.PopoverProps, "className"> {
+export interface ICalendarProps {
   /** Custom class names for styling different parts of the calendar */
   classNames?: ICalendarClasses;
   /** Whether to show days from adjacent months */
   showOutsideDays?: boolean;
   /** Whether to display week numbers */
   showWeekNumbers?: boolean;
-  /** Whether to show the trigger button */
-  showTriggerButton?: boolean;
   /** Whether to show a fixed number of weeks */
   fixedWeeks?: boolean;
   /** Minimum selectable date */
@@ -103,8 +94,6 @@ export interface ICalendarProps extends Omit<Popover.PopoverProps, "className"> 
   disabled?: boolean;
   /** Array of dates that are disabled */
   disabledDays?: Date[];
-  /** Placeholder text when no date is selected */
-  placeholder?: string;
   /** Whether to enable date range selection */
   enableRange?: boolean;
 }

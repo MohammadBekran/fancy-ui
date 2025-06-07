@@ -6,7 +6,11 @@ import Modal from "@/features/modal/components";
 
 describe("Modal", () => {
   it("renders with trigger", () => {
-    render(<Modal trigger={<Button>Open</Button>}>Content</Modal>);
+    render(
+      <Modal title="Hello" trigger={<Button>Open</Button>}>
+        Content
+      </Modal>
+    );
     expect(screen.getByRole("button", { name: "Open" })).toBeInTheDocument();
   });
 
@@ -84,7 +88,7 @@ describe("Modal", () => {
         onClose={() => {}}
         title="Custom Modal"
         description="A custom styled modal"
-        classes={{
+        classNames={{
           content: "custom-content",
         }}
       >

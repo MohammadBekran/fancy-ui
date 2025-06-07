@@ -113,7 +113,7 @@ export const CustomStyling: TStory = {
     <Modal
       trigger={<Button>Open Modal</Button>}
       title="Custom Styled Modal"
-      classes={{
+      classNames={{
         content: "bg-gray-100",
         overlay: "bg-black/70",
       }}

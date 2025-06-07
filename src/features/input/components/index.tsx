@@ -51,7 +51,7 @@ const Input = ({
   isLoading = false,
   validationType,
   customValidation,
-  classes,
+  classNames,
   value: externalValue,
   onChange,
   onBlur,
@@ -153,14 +153,14 @@ const Input = ({
       "scale-[1.01]": isFocused,
       "pr-10": (isPassword && showPasswordToggle) || isLoading,
     },
-    classes?.input
+    classNames?.input
   );
 
   const wrapperClassName = cn(
     "flex flex-col gap-1.5",
     "transition-all duration-300 ease-in-out",
     fullWidth ? "w-full" : "max-w-[300px]",
-    classes?.wrapper
+    classNames?.wrapper
   );
 
   const labelClassName = cn(
@@ -168,7 +168,7 @@ const Input = ({
     "transition-all duration-200 ease-in-out",
     "transform",
     isFocused && "translate-y-[-2px]",
-    classes?.label
+    classNames?.label
   );
 
   const messageClassName = cn(
@@ -179,7 +179,7 @@ const Input = ({
     {
       "animate-shake": error || internalError,
     },
-    classes?.error || classes?.helperText
+    classNames?.error || classNames?.helperText
   );
 
   const characterCountClassName = cn(
@@ -188,7 +188,7 @@ const Input = ({
     {
       "text-red-500": currentLength >= (maxLength || 0),
     },
-    classes?.characterCount
+    classNames?.characterCount
   );
 
   /**
@@ -238,7 +238,7 @@ const Input = ({
               "absolute right-2 top-1/2 -translate-y-1/2",
               "text-gray-500 hover:text-gray-700",
               "transition-colors",
-              classes?.showPasswordIcon || classes?.hidePasswordIcon
+              classNames?.showPasswordIcon || classNames?.hidePasswordIcon
             )}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >

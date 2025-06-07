@@ -141,15 +141,15 @@ describe("Input", () => {
     expect(wrapper).toHaveClass("w-full");
   });
 
-  it("applies custom classes", () => {
-    const customClasses = {
+  it("applies custom class names", () => {
+    const customClassNames = {
       wrapper: "custom-wrapper",
       input: "custom-input",
       label: "custom-label",
       error: "custom-error",
     };
 
-    renderWithForm(<Input name="test" label="Test" error="Error" classes={customClasses} />);
+    renderWithForm(<Input name="test" label="Test" error="Error" classNames={customClassNames} />);
 
     const wrapper = screen.getByRole("textbox").closest(".flex.flex-col");
     const input = screen.getByRole("textbox");
