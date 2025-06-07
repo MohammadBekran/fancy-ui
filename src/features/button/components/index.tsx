@@ -32,9 +32,8 @@
  * ```
  */
 
-import type { IButtonProps } from "@/features/button/core/types";
-
-import { cn } from "@/core/utils";
+import { cn } from "../../../core/utils";
+import type { IButtonProps } from "../core/types";
 
 const Button = ({
   className,

@@ -1,11 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
-import Button from "@/features/button/components";
-import type { IModalProps } from "@/features/modal/core/types";
+import { cn } from "../../../core/utils";
+import Button from "../../button/components";
+import type { IModalProps } from "../core/types";
 
-import { cn } from "@/core/utils";
-
-import "@/features/modal/components/index.css";
+import "../components/index.css";
 
 /**
  * A flexible modal component built on top of Radix UI Dialog.

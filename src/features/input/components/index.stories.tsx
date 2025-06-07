@@ -10,12 +10,12 @@
  * ground for the component's features.
  */
 
+import * as Form from "@radix-ui/react-form";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import * as Form from "@radix-ui/react-form";
 
-import Input from "@/features/input/components";
-import Button from "@/features/button/components";
+import Button from "../../button/components";
+import Input from "../components";
 
 /**
  * Input Component Documentation

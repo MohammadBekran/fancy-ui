@@ -1,4 +1,4 @@
-import { VALIDATION_PATTERNS } from "@/features/input/core/constants";
+import { VALIDATION_PATTERNS } from "../../core/constants";
 
 /**
  * Input Component Type Definitions

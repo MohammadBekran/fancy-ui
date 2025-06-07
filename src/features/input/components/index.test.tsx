@@ -21,7 +21,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
-import Input from "@/features/input/components";
+import Input from "../components";
 
 /**
  * Helper function to render the Input component within a Form context

@@ -17,7 +17,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Calendar from "@/features/calendar/components";
+import Calendar from "../components";
 
 // Mock pointer events and scrollIntoView
 Element.prototype.hasPointerCapture = vi.fn();

@@ -1,10 +1,9 @@
 import React, { useId, useState } from "react";
 
-import { VALIDATION_MESSAGES, VALIDATION_PATTERNS } from "@/features/input/core/constants";
-import { HidePasswordIcon, ShowPasswordIcon } from "@/features/input/core/icons";
-import type { IInputProps, IValidationResult } from "@/features/input/core/types";
-
-import { cn } from "@/core/utils";
+import { cn } from "../../../core/utils";
+import { VALIDATION_MESSAGES, VALIDATION_PATTERNS } from "../core/constants";
+import { HidePasswordIcon, ShowPasswordIcon } from "../core/icons";
+import type { IInputProps, IValidationResult } from "../core/types";
 
 /**
  * Input Component

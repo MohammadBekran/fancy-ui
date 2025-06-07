@@ -32,27 +32,26 @@ import { Button } from "@mohammadbekran/fancy-ui";
 // Primary button with loading state
 <Button
   variant="primary"
-  size="md"
   isLoading={true}
   onClick={() => console.log('clicked')}
 >
   Submit
 </Button>
 
-// Secondary button
+// Secondary button with icon
 <Button
   variant="secondary"
-  size="lg"
+  leftIcon={<IconComponent />}
 >
   Download
 </Button>
 
-// Outline button
+// Ghost button with right icon
 <Button
-  variant="outline"
-  size="sm"
+  variant="ghost"
+  rightIcon={<IconComponent />}
 >
-  Cancel
+  Learn More
 </Button>
 ```
 
@@ -63,22 +62,16 @@ import { Calendar } from "@mohammadbekran/fancy-ui";
 
 // Basic date picker
 <Calendar
-  selected={date}
-  onSelect={setDate}
-  showOutsideDays
-  placeholder="Select date"
+  value={date}
+  onChange={setDate}
 />
 
-// Date range picker with constraints
+// Range selection with custom styling
 <Calendar
-  enableRange
-  selected={dateRange}
-  onSelect={setDateRange}
-  minDate={new Date()}
-  maxDate={addMonths(new Date(), 3)}
-  showWeekNumbers
-  fixedWeeks
-  locale="en-US"
+  mode="range"
+  value={dateRange}
+  onChange={setDateRange}
+  className="custom-calendar"
 />
 ```
 
@@ -87,39 +80,19 @@ import { Calendar } from "@mohammadbekran/fancy-ui";
 ```tsx
 import { Modal } from "@mohammadbekran/fancy-ui";
 
-// Basic modal
-<Modal
-  isOpen={isOpen}
-  onClose={() => setIsOpen(false)}
-  title="Confirmation"
-  description="Are you sure you want to proceed?"
-  size="md"
-  showCloseButton
-  closeOnOutsideClick
->
+<Modal title="Confirmation" isOpen={isOpen} onClose={() => setIsOpen(false)} size="md">
   <div className="p-4">
-    <p>Modal content goes here</p>
+    <p>Are you sure you want to proceed?</p>
+    <div className="flex justify-end gap-2 mt-4">
+      <Button variant="ghost" onClick={() => setIsOpen(false)}>
+        Cancel
+      </Button>
+      <Button variant="primary" onClick={handleConfirm}>
+        Confirm
+      </Button>
+    </div>
   </div>
-</Modal>
-
-// Modal with custom trigger
-<Modal
-  isOpen={isOpen}
-  onClose={() => setIsOpen(false)}
-  title="Settings"
-  size="lg"
-  trigger={<Button>Open Settings</Button>}
-  classes={{
-    overlay: "bg-black/60",
-    content: "bg-gray-50",
-    title: "text-xl font-bold",
-    closeButton: "hover:bg-gray-200"
-  }}
->
-  <div className="p-4">
-    <p>Settings content</p>
-  </div>
-</Modal>
+</Modal>;
 ```
 
 ## Getting Started
@@ -179,7 +152,7 @@ pnpm storybook
 fancy-ui/
 ├── src/
 │   ├── app/              # Application entry point
-│   ├── assets/           # Static assets (images, fonts, etc.)
+│   ├── assets/           # Static assets (images)
 │   ├── components/       # Shared UI components
 │   │   └── spinner.tsx   # Loading spinner component
 │   ├── core/            # Core utilities and configurations
@@ -262,7 +235,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Radix UI](https://www.radix-ui.com/) - For accessible primitives
 - [Tailwind CSS](https://tailwindcss.com/) - For styling
-- [Storybook](https://storybook.js.org/) - For component documentation
+- [Storybook](https://fancy-ui-ecru.vercel.app/) - For component documentation
 - [Vitest](https://vitest.dev/) - For testing
 
 ## Support
@@ -270,6 +243,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For support, please:
 
 - Open an issue on GitHub
+- Check the documentation
 
 ---
 

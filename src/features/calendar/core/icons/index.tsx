@@ -8,7 +8,7 @@
 
 import React from "react";
 
-import { cn } from "@/core/utils";
+import { cn } from "../../../../core/utils";
 
 /**
  * Base props interface for calendar icons

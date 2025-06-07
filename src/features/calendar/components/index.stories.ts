@@ -17,7 +17,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import Calendar from "@/features/calendar/components";
+import Calendar from "../components";
 
 /**
  * Story configuration for the Calendar component
