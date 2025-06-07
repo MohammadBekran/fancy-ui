@@ -16,11 +16,28 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react-dom"],
       output: [
-        { format: "cjs", dir: "dist/cjs" },
-        { format: "es", dir: "dist/esm" },
+        {
+          format: "es",
+          entryFileNames: "index.mjs",
+          assetFileNames: "index.css",
+          globals: {
+            react: "React",
+            "react-dom": "ReactDOM",
+          },
+        },
+        {
+          format: "cjs",
+          entryFileNames: "index.js",
+          assetFileNames: "index.css",
+          globals: {
+            react: "React",
+            "react-dom": "ReactDOM",
+          },
+        },
       ],
     },
     sourcemap: true,
+    emptyOutDir: false,
   },
   resolve: {
     alias: {

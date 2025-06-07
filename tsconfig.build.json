@@ -5,7 +5,12 @@
     "declarationDir": "./dist",
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "composite": false,
+    "module": "ESNext",
+    "moduleResolution": "node"
   },
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"]
 }

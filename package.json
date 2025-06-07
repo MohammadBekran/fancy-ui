@@ -1,20 +1,31 @@
 {
   "name": "@mohammadbekran/fancy-ui",
   "private": false,
-  "version": "0.16.0",
+  "version": "0.18.0",
   "type": "module",
   "description": "A modern, accessible, and highly customizable React component library built with TypeScript and Tailwind CSS",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "style": "dist/index.css",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/index.css",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "style": "./dist/index.css"
+    }
+  },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.build.json && vite build",
+    "clean": "if exist dist rmdir /s /q dist",
+    "build:types": "tsc -p tsconfig.build.json",
+    "build:js": "vite build",
+    "build": "npm run clean && npm run build:types && npm run build:js",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "preview": "vite preview",
@@ -25,7 +36,7 @@
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

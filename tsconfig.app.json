@@ -16,6 +16,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
 
     /* Linting */
     "strict": true,
@@ -27,7 +28,7 @@
     /* Declaration files */
     "declaration": true,
     "declarationDir": "./dist",
-    "noEmit": false,
+    "noEmit": true,
     "outDir": "./dist"
   },
   "include": ["src"]
