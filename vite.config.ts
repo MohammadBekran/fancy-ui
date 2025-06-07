@@ -16,25 +16,11 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react-dom"],
       output: [
-        {
-          format: "cjs",
-          dir: "dist/cjs",
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name === "style.css") return "fancy-ui.css";
-            return assetInfo.name;
-          },
-        },
-        {
-          format: "es",
-          dir: "dist/esm",
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name === "style.css") return "fancy-ui.css";
-            return assetInfo.name;
-          },
-        },
+        { format: "cjs", dir: "dist/cjs" },
+        { format: "es", dir: "dist/esm" },
       ],
     },
-    sourcemap: true, // Helps debug build
+    sourcemap: true,
   },
   resolve: {
     alias: {
