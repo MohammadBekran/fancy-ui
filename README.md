@@ -27,7 +27,7 @@ Fancy UI is a production-ready component library designed for building modern we
 ### Button
 
 ```tsx
-import { Button } from "@mohammadbekran/fancy-ui";
+import { Button } from "@mohammadbekran/fan wecy-ui";
 
 // Primary button with loading state
 <Button
@@ -235,7 +235,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Radix UI](https://www.radix-ui.com/) - For accessible primitives
 - [Tailwind CSS](https://tailwindcss.com/) - For styling
-- [Storybook](https://fancy-ui-ecru.vercel.app/) - For component documentation
+- [Storybook](https://storybook.js.org/) - For component documentation
 - [Vitest](https://vitest.dev/) - For testing
 
 ## Support
