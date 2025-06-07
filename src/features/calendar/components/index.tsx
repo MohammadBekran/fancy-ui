@@ -69,6 +69,7 @@ const Calendar = ({
   locale = "en-US",
   placeholder = "Select date",
   enableRange = false,
+  showTrigger = true,
   ...props
 }: ICalendarProps) => {
   // Track selected date, current month view, popover state, and range selection
@@ -357,54 +358,56 @@ const Calendar = ({
 
   return (
     <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
-      {/* Calendar trigger button */}
-      <Popover.Trigger asChild>
-        <Button
-          variant="outline"
-          className={cn(
-            "w-full cursor-pointer",
-            "text-left text-sm",
-            "flex items-center gap-x-3",
-            "bg-white/50 backdrop-blur-sm",
-            "border-0 shadow-sm hover:shadow-md",
-            "transition-all duration-300",
-            "hover:bg-white/80",
-            {
-              "cursor-not-allowed opacity-50": disabled,
-            },
-            classNames?.triggerButton
-          )}
-          disabled={disabled}
-          {...props}
-        >
-          <span>
-            {selectedDate &&
-            !isNaN(
-              selectedDate instanceof Date ? selectedDate.getTime() : selectedDate.from.getTime()
-            )
-              ? enableRange && !(selectedDate instanceof Date)
-                ? `${selectedDate.from.toLocaleDateString(locale, {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })} - ${selectedDate.to.toLocaleDateString(locale, {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}`
-                : (selectedDate instanceof Date
-                    ? selectedDate
-                    : selectedDate.from
-                  ).toLocaleDateString(locale, {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })
-              : placeholder}
-          </span>
-          <CalendarIcon className="h-4 w-4 text-gray-500" />
-        </Button>
-      </Popover.Trigger>
+      {/* Calendar trigger button - only show if showTrigger is true */}
+      {showTrigger && (
+        <Popover.Trigger asChild>
+          <Button
+            variant="outline"
+            className={cn(
+              "w-full cursor-pointer",
+              "text-left text-sm",
+              "flex items-center gap-x-3",
+              "bg-white/50 backdrop-blur-sm",
+              "border-0 shadow-sm hover:shadow-md",
+              "transition-all duration-300",
+              "hover:bg-white/80",
+              {
+                "cursor-not-allowed opacity-50": disabled,
+              },
+              classNames?.triggerButton
+            )}
+            disabled={disabled}
+            {...props}
+          >
+            <span>
+              {selectedDate &&
+              !isNaN(
+                selectedDate instanceof Date ? selectedDate.getTime() : selectedDate.from.getTime()
+              )
+                ? enableRange && !(selectedDate instanceof Date)
+                  ? `${selectedDate.from.toLocaleDateString(locale, {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })} - ${selectedDate.to.toLocaleDateString(locale, {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}`
+                  : (selectedDate instanceof Date
+                      ? selectedDate
+                      : selectedDate.from
+                    ).toLocaleDateString(locale, {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                : placeholder}
+            </span>
+            <CalendarIcon className="h-4 w-4 text-gray-500" />
+          </Button>
+        </Popover.Trigger>
+      )}
       {/* Calendar popover content */}
       <Popover.Portal>
         <Popover.Content
