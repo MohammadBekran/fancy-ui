@@ -20,7 +20,7 @@ export interface IModalProps {
   /** Content to be displayed inside the modal */
   children: ReactNode;
   /** Title of the modal */
-  title?: string;
+  title: string;
   /** Description text for the modal */
   description?: string;
   /** Size variant of the modal */
